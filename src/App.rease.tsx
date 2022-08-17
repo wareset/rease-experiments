@@ -61,9 +61,9 @@ const counter = (): void => {
 export default function App(
   this: TypeReaseContext
 ): void {
-  // console.log(this);
+  console.log(this)
 
-  (
+  ;(
     <Title title={document.title}/>
   )
 

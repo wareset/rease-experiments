@@ -74,9 +74,9 @@ const counter = (): void => {
 export default function App(
   this: TypeReaseContext
 ): void {
-  // console.log(this);
+  console.log(this)
 
-  (
+  ;(
       _c7(Title, { title: document.title })([])
 
   )
