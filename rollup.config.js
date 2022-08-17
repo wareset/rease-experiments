@@ -36,7 +36,7 @@ export default {
     sourcemap: false,
     format   : 'iife',
     name     : 'app',
-    file     : 'app/build/bundle.js'
+    file     : 'build/bundle.js'
   },
   plugins: [
     rease({
