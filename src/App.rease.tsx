@@ -6,7 +6,7 @@ import Title from './Title.rease'
 
 // document.addEventListener('keydown', (e) => { console.log(e) })
 
-const counter = (): void => {
+function Counter(): void {
   const $count = storage<number>(0)
 
   const increment_1 = (): void => { $count.$++ }
@@ -16,7 +16,7 @@ const counter = (): void => {
   const decrement_10 = (): void => { $count.$ -= 10 }
 
   ;(
-    <div>
+    <section>
       <h2>Counter</h2>
       <div
         style--color={$count!! > 0 ? 'green' : $count!! < 0 ? 'red' : 'gray'}
@@ -54,8 +54,14 @@ const counter = (): void => {
         <p>Count is 0</p>
       }}
       />
-    </div>
+    </section>
   )
+}
+
+function ExampleComponentWithSlot(): void {
+  <div>
+    <r-slot r-name="counter"/>
+  </div>
 }
 
 export default function App(
@@ -66,6 +72,10 @@ export default function App(
   ;(
     <Title title={document.title}/>
   )
-
-  counter()
+  
+  ;(
+    <ExampleComponentWithSlot>
+      <Counter r-slot="counter"/>
+    </ExampleComponentWithSlot>
+  )
 }

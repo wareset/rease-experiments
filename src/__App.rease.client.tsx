@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import {
   _c as _c7,
-  _t as _t3,
+  _s as _s10,
   _e as _e8,
+  _t as _t3,
   _re as _re14,
   _$ as _$1,
   _rl as _rl13,
@@ -18,7 +19,7 @@ import Title from './Title.rease'
 
 // document.addEventListener('keydown', (e) => { console.log(e) })
 
-const counter = (): void => {
+function Counter(): void {
   const $count = storage<number>(0)
 
   const increment_1 = (): void => { $count.$++ }
@@ -28,7 +29,7 @@ const counter = (): void => {
   const decrement_10 = (): void => { $count.$ -= 10 }
 
   ;(
-      _e8("div")(
+      _e8("section")(
     _e8("h2")(
       _t3("Counter")
     ),
@@ -71,6 +72,13 @@ const counter = (): void => {
   )
 }
 
+function ExampleComponentWithSlot(): void {
+    _e8("div")(
+    _s10("counter")()
+  )
+
+}
+
 export default function App(
   this: TypeReaseContext
 ): void {
@@ -80,6 +88,11 @@ export default function App(
       _c7(Title, { title: document.title })([])
 
   )
+  
+  ;(
+      _c7(ExampleComponentWithSlot)([
+    ["counter", () => { _c7(Counter)([]) }]
+  ])
 
-  counter()
+  )
 }
