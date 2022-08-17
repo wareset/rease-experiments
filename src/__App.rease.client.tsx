@@ -13,14 +13,16 @@ import {
 } from 'rease';
 
 import { TypeReaseContext } from 'rease'
-import { storage } from 'rease'
+import { subject } from 'rease'
 
 import Title from './Title.rease'
 
 // document.addEventListener('keydown', (e) => { console.log(e) })
 
-function Counter(): void {
-  const $count = storage<number>(0)
+function Counter(
+  this: TypeReaseContext
+): void {
+  const $count = subject<number>(0)
 
   const increment_1 = (): void => { $count.$++ }
   const decrement_1 = (): void => { $count.$-- }
@@ -39,7 +41,9 @@ function Counter(): void {
     ),
     _e8("div")(
       _e8("small")(
-        _t3("When the button 'Shift' is pressed, the value will change by 10")
+        _t3("The keys 'ArrowUp' and 'ArrowDown' also work."),
+        _e8("br")(),
+        _t3("When the button 'Shift' is pressed, the value will change by 10.")
       )
     ),
     _e8("br")(),
@@ -72,24 +76,29 @@ function Counter(): void {
   )
 }
 
-function ExampleComponentWithSlot(): void {
-    _e8("div")(
+function ExampleComponentWithSlot(
+  this: TypeReaseContext
+): void {
+  if (this.slots!.some((v) => v[0] === 'counter')) {
+      _e8("div")(
     _s10("counter")()
   )
 
+  }
 }
 
 export default function App(
   this: TypeReaseContext
 ): void {
+  console.log('App:')
   console.log(this)
 
-  ;(
+  if (document.title) {
       _c7(Title, { title: document.title })([])
 
-  )
+  }
   
-  ;(
+  (
       _c7(ExampleComponentWithSlot)([
     ["counter", () => { _c7(Counter)([]) }]
   ])

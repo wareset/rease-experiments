@@ -7,10 +7,10 @@ import {
 
 import { TypeReaseContext } from 'rease'
 
-import { storageGlobal, onDestroy } from 'rease'
+import { subjectGlobal, onDestroy } from 'rease'
 
 let needChange$DEGREES = true
-const $DEGREES = storageGlobal<number>(0)
+const $DEGREES = subjectGlobal<number>(0)
 const change$DEGREES = (): void => { $DEGREES.$ = Math.random() * 360 }
 
 export default function Title(
@@ -38,5 +38,5 @@ Title.css =   [() => /*r2.$*/_$1([$DEGREES], (_$0) => (`
   transition: color 2s;
   color: hsl(${_$0[0]}, 80%, 50%);
 }
-`)), "c27bcoaf8", true]
+`)), "c2m1hidom", true]
 

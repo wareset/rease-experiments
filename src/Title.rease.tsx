@@ -1,10 +1,10 @@
 import 'rease/jsx'
 import { TypeReaseContext } from 'rease'
 
-import { storageGlobal, onDestroy } from 'rease'
+import { subjectGlobal, onDestroy } from 'rease'
 
 let needChange$DEGREES = true
-const $DEGREES = storageGlobal<number>(0)
+const $DEGREES = subjectGlobal<number>(0)
 const change$DEGREES = (): void => { $DEGREES.$ = Math.random() * 360 }
 
 export default function Title(

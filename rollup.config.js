@@ -11,7 +11,6 @@ const production = !process.env.ROLLUP_WATCH
 function serve() {
   let server
 
-  // eslint-disable-next-line func-style
   function toExit() {
     if (server) server.kill(0)
   }
@@ -73,7 +72,10 @@ export default {
       ]
     }),
 
-    production && terser()
+    production && terser({
+      keep_fnames    : true,
+      keep_classnames: true
+    })
   ],
   watch: { clearScreen: false }
 }

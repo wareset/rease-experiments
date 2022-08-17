@@ -1,13 +1,15 @@
 import 'rease/jsx'
 import { TypeReaseContext } from 'rease'
-import { storage } from 'rease'
+import { subject } from 'rease'
 
 import Title from './Title.rease'
 
 // document.addEventListener('keydown', (e) => { console.log(e) })
 
-function Counter(): void {
-  const $count = storage<number>(0)
+function Counter(
+  this: TypeReaseContext
+): void {
+  const $count = subject<number>(0)
 
   const increment_1 = (): void => { $count.$++ }
   const decrement_1 = (): void => { $count.$-- }
@@ -24,7 +26,11 @@ function Counter(): void {
         Count: {$count!!}
       </div>
       <div>
-        <small>When the button 'Shift' is pressed, the value will change by 10</small>
+        <small>
+          The keys 'ArrowUp' and 'ArrowDown' also work.
+          <br/>
+          When the button 'Shift' is pressed, the value will change by 10.
+        </small>
       </div>
       <br/>
       <div>
@@ -58,22 +64,27 @@ function Counter(): void {
   )
 }
 
-function ExampleComponentWithSlot(): void {
-  <div>
-    <r-slot r-name="counter"/>
-  </div>
+function ExampleComponentWithSlot(
+  this: TypeReaseContext
+): void {
+  if (this.slots!.some((v) => v[0] === 'counter')) {
+    <div>
+      <r-slot r-name="counter"/>
+    </div>
+  }
 }
 
 export default function App(
   this: TypeReaseContext
 ): void {
+  console.log('App:')
   console.log(this)
 
-  ;(
+  if (document.title) {
     <Title title={document.title}/>
-  )
+  }
   
-  ;(
+  (
     <ExampleComponentWithSlot>
       <Counter r-slot="counter"/>
     </ExampleComponentWithSlot>

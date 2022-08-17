@@ -1,5 +1,6 @@
-// import * as rease from 'rease'
-// console.log(rease)
+import * as rease from 'rease'
+console.log('rease:')
+console.log(rease)
 
 import { createReaseApp } from 'rease'
 
