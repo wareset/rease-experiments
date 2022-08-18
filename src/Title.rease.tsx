@@ -23,8 +23,9 @@ export default function Title(
     <h1 class="title">{title}</h1>
   )
 }
-Title.css = <style jsx global>{`
+Title.css = <style jsx>{`
 .title {
+  content: '\`';
   text-align: center;
   transition: color 2s;
   color: hsl(${$DEGREES!!}, 80%, 50%)
