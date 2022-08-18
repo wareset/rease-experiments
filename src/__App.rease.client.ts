@@ -1,3 +1,5 @@
+/* eslint-disable */
+// @ts-nocheck
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import {
   _c as _c7,
