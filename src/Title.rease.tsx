@@ -24,10 +24,10 @@ export default function Title(
   )
 }
 Title.css = <style jsx>{`
-.title {
-  content: '\`';
-  text-align: center;
-  transition: color 2s;
-  color: hsl(${$DEGREES!!}, 80%, 50%)
-}
+  .title {
+    // content: '\`';
+    text-align: center;
+    transition: color 2s;
+    color: hsl(${$DEGREES!!}, 80%, 50%)
+  }
 `}</style>

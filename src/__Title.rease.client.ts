@@ -34,5 +34,5 @@ export default function Title(
 
   )
 }
-Title.css =   [() => /*r2.$*/_$1([$DEGREES], (_$0) => (`.title.c2jykb02k{content:'\`';text-align:center;transition:color 2s;color:hsl(${_$0[0]}, 80%, 50%)}`)), "c2jykb02k", false]
+Title.css =   [(_c278ezoqu) => /*r2.$*/_$1([$DEGREES], (_$0) => (`.title${_c278ezoqu}{text-align:center;transition:color 2s;color:hsl(${_$0[0]}, 80%, 50%)}`)), "c278ezoqu"]
 
