@@ -88,7 +88,7 @@ function Counter(
         Pending: {$time!!}
         </r-await>
         <r-then r-children={(data) => {
-          <>{data}</>
+          <r-text r-is={data}/>
         }}
         />
       </r-if>
@@ -109,6 +109,24 @@ function ExampleComponentWithSlot(
   }
 }
 
+function H1(
+  this: TypeReaseContext
+): void {
+  console.log(this)
+  ;(<h1>
+    h1: <r-slot/>
+  </h1>)
+}
+
+function H2(
+  this: TypeReaseContext
+): void {
+  console.log(this)
+  ;(<h2>
+    h2: <r-slot/>
+  </h2>)
+}
+
 export default function App(
   this: TypeReaseContext
 ): void {
@@ -118,8 +136,37 @@ export default function App(
   if (document.title) {
     <Title title={document.title}/>
   }
+
+  const $cmp = subject<any>(new Promise((res) => { setTimeout(() => { res(H2) }, 2000) }))
+  setTimeout(() => {
+    $cmp.$ = new Promise((res) => { setTimeout(() => { res(H1) }, 1000) })
+  }, 500)
+
+  ;(
+    <r-component r-is={$cmp!!}>cccccccccc</r-component>
+  )
+
+  // ;(
+  //   <H1 r-is={H1}>cccccccccc</H1>
+  // )
+
+  // ;(
+  //   <h1 r-is={$cmp}>cccccccccc</h1>
+  // )
+
+  // ;(
+  //   <h1 r-is={new Promise((res) => {
+  //     setTimeout(() => { res('h2') }, 1000)
+  //   })}>cccccccccc</h1>
+  // )
   
-  (
+  ;(
+    <H1 r-is={new Promise((res) => {
+      setTimeout(() => { res(H2) }, 1000)
+    })}>cccccccccc</H1>
+  )
+  
+  ;(
     <ExampleComponentWithSlot>
       <Counter r-slot="counter"/>
     </ExampleComponentWithSlot>

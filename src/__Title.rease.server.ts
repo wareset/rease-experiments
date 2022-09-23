@@ -4,7 +4,7 @@
 import {
   _$ as _$1,
   _t as _t3,
-  _e as _e10
+  _e as _e8
 } from 'rease';
 
 import { TypeReaseContext } from 'rease'
@@ -28,7 +28,7 @@ export default function Title(
   }
   
   (
-      _e10("h1", { class: "title" })(
+      _e8("h1", { class: "title" })(
     _t3(title)
   )
 
