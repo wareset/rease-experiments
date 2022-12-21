@@ -1,6 +1,6 @@
 import 'rease/jsx'
 import { TypeReaseContext } from 'rease'
-import { subject, subscribe, onDestroy } from 'rease'
+import { subject, subscribe, onDestroy, context, destroy } from 'rease'
 
 import Title from './Title.rease'
 
@@ -19,11 +19,21 @@ function Counter(
   const increment_10 = (): void => { $count.$ += 10 }
   const decrement_10 = (): void => { $count.$ -= 10 }
 
+  // onCreated(async () => {
+  //   console.log(11111)
+  //   await timethen(1500)
+  //   console.log(22222)
+
+  //   return () => {
+  //     console.log(33333)
+  //   }
+  // })
+
   ;(
     <section>
       <h2>Counter</h2>
       <div
-        style--color={$count!! > 0 ? 'green' : $count!! < 0 ? 'red' : 'gray'}
+        style-color={$count!! > 0 ? 'green' : $count!! < 0 ? 'red' : 'gray'}
       >
         Count: {$count!!}
       </div>
@@ -109,66 +119,62 @@ function ExampleComponentWithSlot(
   }
 }
 
-function H1(
-  this: TypeReaseContext
-): void {
-  console.log(this)
-  ;(<h1>
-    h1: <r-slot/>
-  </h1>)
-}
-
-function H2(
-  this: TypeReaseContext
-): void {
-  console.log(this)
-  ;(<h2>
-    h2: <r-slot/>
-  </h2>)
-}
-
 export default function App(
   this: TypeReaseContext
 ): void {
   console.log('App:')
   console.log(this)
+  // debugger
+  ;(
+    <h1>
+      {destroy(context()!)}
+      qweqwe
+    </h1>
+  )
+
+  // onCreated(async () => {
+  //   console.log(11111)
+  //   await timethen(1500)
+  //   console.log(22222)
+
+  //   return () => {
+  //     console.log(33333)
+  //   }
+  // })
 
   if (document.title) {
     <Title title={document.title}/>
   }
-
-  const $cmp = subject<any>(new Promise((res) => { setTimeout(() => { res(H2) }, 2000) }))
-  setTimeout(() => {
-    $cmp.$ = new Promise((res) => { setTimeout(() => { res(H1) }, 1000) })
-  }, 500)
-
-  ;(
-    <r-component r-is={$cmp!!}>cccccccccc</r-component>
-  )
-
-  // ;(
-  //   <H1 r-is={H1}>cccccccccc</H1>
-  // )
-
-  // ;(
-  //   <h1 r-is={$cmp}>cccccccccc</h1>
-  // )
-
-  // ;(
-  //   <h1 r-is={new Promise((res) => {
-  //     setTimeout(() => { res('h2') }, 1000)
-  //   })}>cccccccccc</h1>
-  // )
   
-  ;(
-    <H1 r-is={new Promise((res) => {
-      setTimeout(() => { res(H2) }, 1000)
-    })}>cccccccccc</H1>
-  )
-  
-  ;(
+  (
     <ExampleComponentWithSlot>
-      <Counter r-slot="counter"/>
+      <r-watch r-is={1} r-slot="counter">
+        <Counter/>
+      </r-watch>
     </ExampleComponentWithSlot>
   )
+
+  // ;(
+  //   <svg viewBox="0 0 30 10" xmlns="http://www.w3.org/2000/svg"
+  //     r-use={([() => {
+  //       console.log('r-use')
+  //     }])}
+  //     r-use-client={[() => {
+  //       console.log('r-use-client')
+  //     }]}
+  //     r-use-server={([() => {
+  //       console.log('r-use-server')
+  //     }])}
+  //   >
+  //     <circle id="myCircle" cx="5" cy="5" r="4" stroke="blue" />
+  //     <use href="#myCircle" x="10" fill="blue" />
+  //     <use href="#myCircle" x="20" fill="white" stroke="red" />
+  //   </svg>
+  // )
 }
+
+// const aa = thenablefy((resolve) => {
+//   console.log(232323)
+//   resolve(121212)
+// })
+// console.log(aa.then(console.log))

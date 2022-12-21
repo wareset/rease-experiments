@@ -1,11 +1,21 @@
 import 'rease/jsx'
+import css from 'rease/css'
 import { TypeReaseContext } from 'rease'
 
-import { subjectGlobal, onDestroy } from 'rease'
+import { subjectGlobal } from 'rease'
 
-let needChange$DEGREES = true
-const $DEGREES = subjectGlobal<number>(0)
-const change$DEGREES = (): void => { $DEGREES.$ = Math.random() * 360 }
+const $DEGREES = subjectGlobal<number>(0, (iam) => {
+  const si = setInterval(() => { iam.set(Math.random() * 360) }, 1500)
+  return () => { clearInterval(si) }
+})
+
+const style = css`
+$title {
+  text-align: center;
+  transition: color 1s;
+  color: hsl(${$DEGREES!!}, 80%, 50%)
+}
+`
 
 export default function Title(
   this: TypeReaseContext,
@@ -13,21 +23,6 @@ export default function Title(
     title: string
   }
 ): void {
-  if (needChange$DEGREES) {
-    needChange$DEGREES = false
-    const SI = setInterval(change$DEGREES, 2500)
-    onDestroy(() => { clearInterval(SI), needChange$DEGREES = true })
-  }
-  
-  (
-    <h1 class="title">{title}</h1>
-  )
+  style.on()
+  ;(<h1 class={style.$title}>{title}</h1>)
 }
-Title.css = <style jsx>{`
-  .title {
-    // content: '\`';
-    text-align: center;
-    transition: color 2s;
-    color: hsl(${$DEGREES!!}, 80%, 50%)
-  }
-`}</style>

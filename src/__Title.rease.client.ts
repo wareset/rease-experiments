@@ -1,19 +1,35 @@
 /* eslint-disable */
 // @ts-nocheck
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import {
-  _$ as _$1,
-  _t as _t3,
-  _e as _e10
+  _x as _x2,
+  _E as _E9,
+  _s as _s22,
+  _$ as _$1
 } from 'rease';
+
 
 import { TypeReaseContext } from 'rease'
 
-import { subjectGlobal, onDestroy } from 'rease'
+import { subjectGlobal } from 'rease'
 
-let needChange$DEGREES = true
-const $DEGREES = subjectGlobal<number>(0)
-const change$DEGREES = (): void => { $DEGREES.$ = Math.random() * 360 }
+const $DEGREES = subjectGlobal<number>(0, (iam) => {
+  const si = setInterval(() => { iam.set(Math.random() * 360) }, 1500)
+  return () => { clearInterval(si) }
+})
+
+const style = {
+  id: "h8m7jnvyx",
+  _: (_p0, _s0) => (/*r2.$*/_$1([$DEGREES], (_$0) => ("."+_s0+0+"{"+_p0[0]+"center;"+_p0[1]+"color 1s;"+_p0[2]+"hsl("+(_$0[0])+",80%,50%)}"))),
+  on() {
+    _s22(
+      this,
+      ["title"],
+      ["text-align","transition","color"]
+    )
+  }
+}
 
 export default function Title(
   this: TypeReaseContext,
@@ -21,18 +37,9 @@ export default function Title(
     title: string
   }
 ): void {
-  if (needChange$DEGREES) {
-    needChange$DEGREES = false
-    const SI = setInterval(change$DEGREES, 2500)
-    onDestroy(() => { clearInterval(SI), needChange$DEGREES = true })
-  }
-  
-  (
-      _e10("h1", { class: "title" })(
-    _t3(title)
+  style.on()
+  ;(  _E9("h1", { class: style.$title })(
+    _x2(title)
   )
-
-  )
+)
 }
-Title.css =   [(_c278ezoqu) => /*r2.$*/_$1([$DEGREES], (_$0) => (`.title${_c278ezoqu}{text-align:center;transition:color 2s;color:hsl(${_$0[0]}, 80%, 50%)}`)), "c278ezoqu"]
-

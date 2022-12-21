@@ -30,7 +30,7 @@ function serve() {
 }
 
 export default {
-  input : 'src/index.ts',
+  input : 'src/index.rease.tsx',
   output: {
     sourcemap: false,
     format   : 'iife',
