@@ -1,4 +1,3 @@
-# rease-template
-Rease simple counter example
+# rease-experiments
 
-See [wareset.github.io/rease-template/app](https://wareset.github.io/rease-template/app/)
+See [wareset.github.io/rease-experiments/app](https://wareset.github.io/rease-experiments/app/)
